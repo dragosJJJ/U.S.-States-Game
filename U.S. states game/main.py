@@ -18,13 +18,13 @@ game_is_on = True
 guessed_states = 0
 while game_is_on:
     guess = screen.textinput(title=f'{guessed_states}/50 Guessed Correctly', prompt="").title()
+    if guess == "Exit":
+        game_is_on = False
     if guess in all_states:
         line = data[data.state == guess]
         guessed_states += 1
         new_state = State(guess, (int(line.iloc[0,1]), int(line.iloc[0,2])))
-    if guessed_states == 50:
-        game_is_on = False
-
+    
 
 print(data)
 
